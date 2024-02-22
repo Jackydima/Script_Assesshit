@@ -700,7 +700,9 @@ gEAction GE_STDCALL AssessHit ( gCScriptProcessingUnit* a_pSPU , Entity* a_pSelf
 
     if ( GetHeldWeaponCategory ( Victim ) != gEWeaponCategory_None && ScriptAdmin.CallScriptFromScript ( "IsHumanoid" , &Victim , &None , 0 ) )
     {
-        if ( HitForce >= 4 && GetHeldWeaponCategory ( Victim ) == gEWeaponCategory_Melee )
+        // Added By Jacky, Only Knockdown when some sort of Powerattacking
+        if ( HitForce >= 4 && GetHeldWeaponCategory ( Victim ) == gEWeaponCategory_Melee && 
+            (DamagerOwnerAction == gEAction_PowerAttack || DamagerOwnerAction == gEAction_HackAttack || DamagerOwnerAction == gEAction_WhirlAttack || DamagerOwnerAction == gEAction_SprintAttack))
         {
             Victim.Routine.FullStop ( );
             Victim.Routine.SetTask ( "ZS_SitKnockDown" );
