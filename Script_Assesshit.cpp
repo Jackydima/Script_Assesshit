@@ -5,6 +5,13 @@
 #include "util/Logging.h"
 #include "util/Hook.h"
 
+
+gSScriptInit& GetScriptInit ( )
+{
+    static gSScriptInit s_ScriptInit;
+    return s_ScriptInit;
+}
+
 enum gEHitForce
 {
     gEHitForce_Minimal = 0 ,
